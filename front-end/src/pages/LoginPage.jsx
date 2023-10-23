@@ -56,6 +56,7 @@ export function LoginPage() {
           <Button>Login</Button>
         </form>
 
+        <Link to="/forgot-password">Forgot Password</Link>
         <p className="flex gap-x-2 justify-between">
           dont have an account?{" "}
           <Link to="/registro" className="text-sky-500">
