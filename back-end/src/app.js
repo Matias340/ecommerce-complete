@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
+import products from "./products.js";
 
 import authRoutes from "./routes/auth.routes.js";
 import cookieParser from "cookie-parser";
@@ -20,5 +21,9 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
+
+app.get("/products", (req, res) => {
+  res.send(products);
+});
 
 export default app;

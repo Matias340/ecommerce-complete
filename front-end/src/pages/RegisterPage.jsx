@@ -31,13 +31,13 @@ function Register() {
         {registerErrors?.map((error, i) => (
           <Message message={error} key={i} />
         ))}
-        <h1 className="text-3xl font-bold">Register</h1>
+        <h1 className="text-3xl font-bold text-blue-500 mb-4">Registro</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Label htmlFor="username">Username:</Label>
+          <Label htmlFor="username">Nombre:</Label>
           <Input
             type="text"
             name="username"
-            placeholder="Write your name"
+            placeholder="Escribe tu nombre"
             {...register("username")}
             autoFocus
           />
@@ -55,7 +55,7 @@ function Register() {
             <p className="text-red-500">{errors.email?.message}</p>
           )}
 
-          <Label htmlFor="password">Password:</Label>
+          <Label htmlFor="password">Contraseña:</Label>
           <Input
             type="password"
             name="password"
@@ -66,7 +66,7 @@ function Register() {
             <p className="text-red-500">{errors.password?.message}</p>
           )}
 
-          <Label htmlFor="confirmPassword">Confirm Password:</Label>
+          <Label htmlFor="confirmPassword">Confirmar Contraseña:</Label>
           <Input
             type="password"
             name="confirmPassword"
@@ -76,12 +76,12 @@ function Register() {
           {errors.confirmPassword?.message && (
             <p className="text-red-500">{errors.confirmPassword?.message}</p>
           )}
-          <Button>Submit</Button>
+          <Button>Crear Cuenta</Button>
         </form>
         <p>
-          Already Have an Account?
-          <Link className="text-sky-500" to="/login">
-            Login
+          ¿Ya tienes una cuenta?
+          <Link className="text-blue-500 ml-5" to="/login">
+            Iniciar Sesión
           </Link>
         </p>
       </Card>
