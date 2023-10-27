@@ -22,22 +22,27 @@ function ForgotPassword() {
   return (
     <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
       <div className="bg-dark p-3 rounded w-25">
-        <h4>Forgot Password</h4>
+        <h2 className="font-bold text-2xl text-gray-900 mb-10">
+          Olvido de contraseña
+        </h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="email">
-              <strong>Email</strong>
+            <label className="text-gray-900 mr-2" htmlFor="email">
+              Email:
             </label>
             <input
               type="email"
               placeholder="Enter Email"
               autoComplete="off"
               name="email"
-              className="form-control rounded-0 text-black"
+              className="form-control border border-gray-300 bg-gray-50 rounded-md pl-2 text-black"
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <button type="submit" className="btn btn-success w-100 rounded-0">
+          <button
+            type="submit"
+            className="pl-2 pr-2 py-1 bg-blue-500 text-white rounded-md"
+          >
             Send
           </button>
         </form>

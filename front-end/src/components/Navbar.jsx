@@ -11,7 +11,7 @@ export function Navbar() {
   return (
     <nav className="bg-blue-500 flex justify-between py-5 px-5">
       <h1 className="text-2xl font-bold text-white">
-        <Link to={isAuthenticated ? "/" : "/profile"}>Ecommerce</Link>
+        <Link to="/">Ecommerce</Link>
       </h1>
       <ul className="flex gap-x-2">
         {isAuthenticated ? (
@@ -38,7 +38,11 @@ export function Navbar() {
               </a>
             </button>
             <li>
-              <Link className="text-white " to="/" onClick={() => logout()}>
+              <Link
+                className="text-white "
+                to="/login"
+                onClick={() => logout()}
+              >
                 Cerrar Sesión
               </Link>
             </li>
