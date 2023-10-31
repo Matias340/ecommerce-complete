@@ -14,14 +14,14 @@ const Total = () => {
       {isAuthenticated ? (
         <Link
           to="/formas-pago"
-          className="bg-blue-500 text-white rounded-md pt-2 pb-2 px-14"
+          className="bg-blue-500 hover:bg-blue-700 text-white rounded-md pt-2 pb-2 px-14"
         >
           COMPRAR
         </Link>
       ) : (
         <Link
           to="/login"
-          className="bg-blue-500 text-white rounded-md pt-2 pb-2 px-14"
+          className="bg-blue-500 hover:bg-blue-700 text-white rounded-md pt-2 pb-2 px-14"
         >
           Inicia Sesión para comprar
         </Link>

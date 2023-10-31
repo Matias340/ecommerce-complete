@@ -10,6 +10,7 @@ import {
 } from "../store/cartSlice";
 import { useDispatch } from "react-redux";
 import Total from "./Total";
+import { Link } from "react-router-dom";
 
 const Carrito = () => {
   const cart = useSelector((state) => state.cart);
@@ -36,8 +37,8 @@ const Carrito = () => {
 
   return (
     <div>
-      <a
-        href="/"
+      <Link
+        to="/"
         className="flex items-center text-blue-500 font-bold ml-2 mt-5 text-decoration-none"
       >
         <svg
@@ -56,7 +57,7 @@ const Carrito = () => {
           />
         </svg>
         <h4>Volver a Compra</h4>
-      </a>
+      </Link>
 
       {cart.cartItems &&
         cart.cartItems.map((item) => (
@@ -112,7 +113,7 @@ const Carrito = () => {
 
       <div className="flex justify-between items-center">
         <button
-          className="bg-blue-500 text-white p-2 mt-5 ml-5 rounded-md"
+          className="bg-blue-500 hover:bg-blue-700 text-white p-2 mt-5 ml-5 rounded-md"
           onClick={() => handleClearCart()}
         >
           Vaciar Carrito
