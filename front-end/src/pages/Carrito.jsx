@@ -98,6 +98,23 @@ const Carrito = () => {
                 >
                   +
                 </button>
+                <div>
+                  {isAuthenticated ? (
+                    <button
+                      onClick={() => FuncionComprar(item)}
+                      className="bg-blue-500 hover:bg-blue-700 text-white rounded-md pt-2 pb-2 px-2"
+                    >
+                      COMPRAR
+                    </button>
+                  ) : (
+                    <Link
+                      to="/login"
+                      className="bg-blue-500 hover:bg-blue-700 text-white rounded-md pt-2 pb-2 px-2"
+                    >
+                      Inicia Sesión para comprar
+                    </Link>
+                  )}
+                </div>
                 <button
                   className="p-2"
                   onClick={() => handleRemoveFromCart(item)}
@@ -120,26 +137,6 @@ const Carrito = () => {
                 </button>
               </div>
             </div>
-            <div className="mt-5">
-              <h2 className="text-gray-900 text-4xl mb-5 font-bold">
-                Total: ${cart.cartTotalAmount}
-              </h2>
-              {isAuthenticated ? (
-                <button
-                  onClick={() => FuncionComprar(item)}
-                  className="bg-blue-500 hover:bg-blue-700 text-white rounded-md pt-2 pb-2 px-14"
-                >
-                  COMPRAR
-                </button>
-              ) : (
-                <Link
-                  to="/login"
-                  className="bg-blue-500 hover:bg-blue-700 text-white rounded-md pt-2 pb-2 px-14"
-                >
-                  Inicia Sesión para comprar
-                </Link>
-              )}
-            </div>
           </div>
         ))}
 
@@ -150,7 +147,9 @@ const Carrito = () => {
         >
           Vaciar Carrito
         </button>
-        <div className="mr-10"></div>
+        <div className="mr-10">
+          <Total />
+        </div>
       </div>
     </div>
   );
