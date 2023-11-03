@@ -8,6 +8,8 @@ import cookieParser from "cookie-parser";
 
 const app = express();
 
+import Mercado_Pago from "./routes/Mercado_Pago_Router.js";
+
 const corsOptions = {
   origin: "http://localhost:5173",
   credentials: true,
@@ -25,5 +27,7 @@ app.use("/api/auth", authRoutes);
 app.get("/products", (req, res) => {
   res.send(products);
 });
+
+app.use("/Mercado_Pago", Mercado_Pago);
 
 export default app;

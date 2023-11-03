@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useAuth } from "../context/authContext";
 import accounting from "accounting";
 import {
   clearCart,
@@ -11,9 +12,20 @@ import {
 import { useDispatch } from "react-redux";
 import Total from "./Total";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Carrito = () => {
   const cart = useSelector((state) => state.cart);
+  const { isAuthenticated } = useAuth();
+
+  const FuncionComprar = async (producto) => {
+    const response = await axios.post(
+      "http://localhost:5000/Mercado_Pago",
+      producto
+    );
+
+    window.location.href = response.data;
+  };
 
   const dispatch = useDispatch();
 
@@ -108,6 +120,26 @@ const Carrito = () => {
                 </button>
               </div>
             </div>
+            <div className="mt-5">
+              <h2 className="text-gray-900 text-4xl mb-5 font-bold">
+                Total: ${cart.cartTotalAmount}
+              </h2>
+              {isAuthenticated ? (
+                <button
+                  onClick={() => FuncionComprar(item)}
+                  className="bg-blue-500 hover:bg-blue-700 text-white rounded-md pt-2 pb-2 px-14"
+                >
+                  COMPRAR
+                </button>
+              ) : (
+                <Link
+                  to="/login"
+                  className="bg-blue-500 hover:bg-blue-700 text-white rounded-md pt-2 pb-2 px-14"
+                >
+                  Inicia Sesión para comprar
+                </Link>
+              )}
+            </div>
           </div>
         ))}
 
@@ -118,9 +150,7 @@ const Carrito = () => {
         >
           Vaciar Carrito
         </button>
-        <div className="mr-10">
-          <Total />
-        </div>
+        <div className="mr-10"></div>
       </div>
     </div>
   );
