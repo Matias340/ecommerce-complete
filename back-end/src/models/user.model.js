@@ -1,4 +1,5 @@
 import mongoose, { Schema } from "mongoose";
+import generarId from "../helpers/generarId.js";
 
 const userSchema = mongoose.Schema(
   {
@@ -16,6 +17,14 @@ const userSchema = mongoose.Schema(
     password: {
       type: String,
       require: true,
+    },
+    token: {
+      type: String,
+      default: generarId(),
+    },
+    confirmado: {
+      type: Boolean,
+      default: false,
     },
   },
   {

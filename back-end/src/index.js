@@ -6,10 +6,14 @@ import nodemailer from "nodemailer";
 import bcrypt from "bcryptjs";
 
 connectDB();
-app.listen(5000);
-console.log("server on port", 5000);
 
-app.post("/forgot-password", (req, res) => {
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`server on port ${PORT}`);
+});
+
+/*app.post("/forgot-password", (req, res) => {
   const { email } = req.body;
   UserModel.findOne({ email: email }).then((user) => {
     if (!user) {
@@ -61,4 +65,4 @@ app.post("/reset-password/:id/:token", (req, res) => {
         .catch((err) => res.send({ Status: err }));
     }
   });
-});
+});*/

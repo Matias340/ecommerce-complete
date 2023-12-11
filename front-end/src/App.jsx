@@ -7,6 +7,7 @@ import { Navbar } from "./components/Navbar";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import Carrito from "./pages/Carrito";
+import ConfirmarCuenta from "./pages/ConfirmarCuenta";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/registro" element={<RegisterPage />} />
             <Route path="/profile" element={<h1>Profile</h1>} />
+            <Route path="confirmar/:id" element={<ConfirmarCuenta />} />
             <Route path="/carrito" element={<Carrito />}></Route>
             <Route path="/forgot-password" element={<ForgotPassword />}></Route>
             <Route

@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../context/authContext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Card, Message, Button, Input, Label } from "../components/ui";
 import { useForm } from "react-hook-form";
 import { registerSchema } from "../schemas/auth";
@@ -15,15 +15,14 @@ function Register() {
   } = useForm({
     resolver: zodResolver(registerSchema),
   });
-  const navigate = useNavigate();
 
   const onSubmit = async (value) => {
     await signup(value);
   };
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (isAuthenticated) navigate("/login");
-  }, [isAuthenticated]);
+  }, [isAuthenticated]);*/
 
   return (
     <div className="h-[calc(100vh-100px)] flex items-center justify-center">

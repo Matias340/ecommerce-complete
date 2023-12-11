@@ -11,7 +11,7 @@ function ForgotPassword() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/forgot-password", { email })
+      .post("http://localhost:5000/api/auth/forgot-password", { email })
       .then((res) => {
         if (res.data.Status === "Success") {
           navigate("/login");

@@ -44,7 +44,11 @@ export function LoginPage() {
             placeholder="youremail@domain.tld"
             {...register("email", { required: true })}
           />
-          <p>{errors.email?.message}</p>
+          <p>
+            {errors.email?.message && (
+              <p className="text-red-500">{errors.email?.message}</p>
+            )}
+          </p>
 
           <Label htmlFor="password">Contraseña:</Label>
           <Input
@@ -53,7 +57,11 @@ export function LoginPage() {
             placeholder="********"
             {...register("password", { required: true, minLength: 6 })}
           />
-          <p>{errors.password?.message}</p>
+          <p>
+            {errors.password?.message && (
+              <p className="text-red-500">{errors.password?.message}</p>
+            )}
+          </p>
 
           <Button>Entrar</Button>
         </form>
