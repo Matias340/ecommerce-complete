@@ -20,8 +20,8 @@ function Register() {
     await signup(value);
   };
 
-  /* useEffect(() => {
-    if (isAuthenticated) navigate("/login");
+  /*useEffect(() => {
+    if (isAuthenticated) alert("usuario creado correctamente, revise su email");
   }, [isAuthenticated]);*/
 
   return (

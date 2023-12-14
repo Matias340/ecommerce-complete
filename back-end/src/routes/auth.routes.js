@@ -4,9 +4,6 @@ import {
   registro,
   logout,
   verifyToken,
-  olvidePassword,
-  comprobarToken,
-  nuevoPassword,
   confirmar,
 } from "../controllers/auth.controller.js";
 import { validateSchema } from "../middlewares/validator.middleware.js";
@@ -19,8 +16,5 @@ router.post("/login", validateSchema(loginSchema), login);
 router.post("/logout", verifyToken, logout);
 router.get("/verify", verifyToken);
 router.get("/confirmar/:token", confirmar);
-router.post("/forgot-password", olvidePassword);
-router.get("/forgot-password/:token", comprobarToken);
-router.post("/forgot-password/:token", nuevoPassword);
 
 export default router;

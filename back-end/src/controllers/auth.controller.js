@@ -3,50 +3,27 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { createAccessToken } from "../libs/jwt.js";
 import { TOKEN_SECRET } from "../config.js";
-import generarId from "../helpers/generarId.js";
 import emailRegistro from "../helpers/emailRegistro.js";
 
 export const registro = async (req, res) => {
+  const { email } = req.body;
+
+  // Prevenir usuarios duplicados
+  const existeUsuario = await User.findOne({ email });
+
+  if (existeUsuario) {
+    const error = new Error("Usuario ya registrado");
+    return res.status(400).json({ msg: error.message });
+  }
+
   try {
-    const { username, email, password } = req.body;
+    // Guardar un Nuevo Usuario
+    const usuario = new User(req.body);
+    const userGuardado = await usuario.save();
 
-    const userFound = await User.findOne({ email });
-
-    if (userFound)
-      return res.status(400).json({
-        message: ["ya hay una cuanta registrada con este mail"],
-      });
-
-    const passwordHash = await bcrypt.hash(password, 10);
-
-    const newUser = new User({
-      username,
-      email,
-      password: passwordHash,
-    });
-
-    //guardar usuario
-    const userSaved = await newUser.save();
-
-    //enviar email
-    emailRegistro({
-      email,
-      username,
-      token: userSaved.token,
-    });
-
-    const token = await createAccessToken({ id: userSaved._id });
-
-    res.cookie("token", token);
-    res.json({
-      id: userSaved._id,
-      username: userSaved.username,
-      email: userSaved.email,
-      createdAt: userSaved.createdAt,
-      updatedAt: userSaved.updatedAt,
-    });
+    res.json(userGuardado);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.log(error);
   }
 };
 
@@ -119,57 +96,6 @@ export const confirmar = async (req, res) => {
     await usuarioConfirmar.save();
 
     res.json({ msg: "Usuario confirmado correctamente" });
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const olvidePassword = async (req, res) => {
-  const { email } = req.body;
-
-  const existeUsuario = await User.findOne({ email });
-  if (!existeUsuario) {
-    const error = new Error("El Usuario no existe");
-    return res.status(400).json({ msg: error.message });
-  }
-
-  try {
-    existeUsuario.token = generarId();
-    await existeUsuario.save();
-    res.json({ msg: "Hemos enviado un mail con las instrucciones" });
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const comprobarToken = async (req, res) => {
-  const { token } = req.params;
-
-  const tokenValido = await User.findOne({ token });
-
-  if (tokenValido) {
-    res.json({ msg: "Token valido y el usuario existe" });
-  } else {
-    const error = new Error("Token no valido");
-    return res.status(400).json({ msg: error.message });
-  }
-};
-
-export const nuevoPassword = async (req, res) => {
-  const { token } = req.params;
-  const { password } = req.body;
-
-  const usuario = await User.findOne({ token });
-  if (!usuario) {
-    const error = new Error("Hubo un error");
-    return res.status(400).json({ msg: error.message });
-  }
-
-  try {
-    usuario.token = null;
-    usuario.password = password;
-    await usuario.save();
-    res.json({ msg: "Passwrod modificada correctamente" });
   } catch (error) {
     console.log(error);
   }

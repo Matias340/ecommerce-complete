@@ -4,8 +4,6 @@ import HomePage from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import { Navbar } from "./components/Navbar";
-import ForgotPassword from "./pages/ForgotPassword";
-import ResetPassword from "./pages/ResetPassword";
 import Carrito from "./pages/Carrito";
 import ConfirmarCuenta from "./pages/ConfirmarCuenta";
 
@@ -22,11 +20,6 @@ const App = () => {
             <Route path="/profile" element={<h1>Profile</h1>} />
             <Route path="confirmar/:id" element={<ConfirmarCuenta />} />
             <Route path="/carrito" element={<Carrito />}></Route>
-            <Route path="/forgot-password" element={<ForgotPassword />}></Route>
-            <Route
-              path="/reset-password/:id/:token"
-              element={<ResetPassword />}
-            ></Route>
           </Routes>
         </main>
       </BrowserRouter>

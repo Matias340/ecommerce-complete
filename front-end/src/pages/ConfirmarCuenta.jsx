@@ -17,7 +17,7 @@ function ConfirmarCuenta() {
   useEffect(() => {
     const cuenta = async () => {
       try {
-        const url = `http://localhost:5000/api/auth/confirmar/${id}`;
+        const url = `${import.meta.env.VITE_BACKEND_URL}/auth/confirmar/${id}`;
         const { data } = await axios(url);
         setCuentaConfirmada(true);
         setAlerta({
