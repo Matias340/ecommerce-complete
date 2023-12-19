@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAuth } from "../context/authContext";
 import { Link } from "react-router-dom";
 import { Card, Message, Button, Input, Label } from "../components/ui";
@@ -20,9 +20,9 @@ function Register() {
     await signup(value);
   };
 
-  /*useEffect(() => {
+  useEffect(() => {
     if (isAuthenticated) alert("usuario creado correctamente, revise su email");
-  }, [isAuthenticated]);*/
+  }, [isAuthenticated]);
 
   return (
     <div className="h-[calc(100vh-100px)] flex items-center justify-center">

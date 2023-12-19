@@ -66,7 +66,7 @@ export function LoginPage() {
           <Button>Entrar</Button>
         </form>
 
-        <Link to="/forgot-password">¿Olvidaste tu contraseña?</Link>
+        <Link to="/olvide-password">¿Olvidaste tu contraseña?</Link>
         <p className="flex gap-x-2 justify-between">
           ¿No tienes una cuenta?{" "}
           <Link to="/registro" className="text-blue-500">

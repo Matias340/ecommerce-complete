@@ -4,9 +4,11 @@ import jwt from "jsonwebtoken";
 import { createAccessToken } from "../libs/jwt.js";
 import { TOKEN_SECRET } from "../config.js";
 import emailRegistro from "../helpers/emailRegistro.js";
+import generarId from "../helpers/generarId.js";
+import emailOlvidePassword from "../helpers/emailOlvidePassword.js";
 
 export const registro = async (req, res) => {
-  const { email } = req.body;
+  const { email, username, token } = req.body;
 
   // Prevenir usuarios duplicados
   const existeUsuario = await User.findOne({ email });
@@ -20,6 +22,13 @@ export const registro = async (req, res) => {
     // Guardar un Nuevo Usuario
     const usuario = new User(req.body);
     const userGuardado = await usuario.save();
+
+    //Enviar el email
+    emailRegistro({
+      email,
+      username,
+      token: userGuardado.token,
+    });
 
     res.json(userGuardado);
   } catch (error) {
@@ -96,6 +105,67 @@ export const confirmar = async (req, res) => {
     await usuarioConfirmar.save();
 
     res.json({ msg: "Usuario confirmado correctamente" });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const olvidePassword = async (req, res) => {
+  const { email } = req.body;
+
+  const existeUsuario = await User.findOne({ email });
+
+  if (!existeUsuario) {
+    const error = new Error("El usuario no existe");
+    return res.status(400).json({ msg: error.message });
+  }
+
+  try {
+    existeUsuario.token = generarId();
+    await existeUsuario.save();
+
+    //Enviar Email
+    emailOlvidePassword({
+      email,
+      username: existeUsuario.username,
+      token: existeUsuario.token,
+    });
+
+    res.json({ msg: "Hemos enviado un email" });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const comprobarToken = async (req, res) => {
+  const { token } = req.params;
+
+  const tokenValido = await User.findOne({ token });
+
+  if (tokenValido) {
+    res.json({ msg: "Token valido" });
+  } else {
+    const error = new Error("Token no valido");
+    return res.status(400).json({ msg: error.message });
+  }
+};
+
+export const nuevoPassword = async (req, res) => {
+  const { token } = req.params;
+  console.log(token);
+  const { password } = req.body;
+
+  const usuario = await User.findOne({ token });
+  if (!usuario) {
+    const error = new Error("Hubo un error");
+    return res.status(400).json({ msg: error.message });
+  }
+
+  try {
+    usuario.token = null;
+    usuario.password = password;
+    await usuario.save();
+    res.json({ msg: "Password modificado" });
   } catch (error) {
     console.log(error);
   }

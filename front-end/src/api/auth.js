@@ -9,3 +9,6 @@ export const loginRequest = async (user) =>
 
 export const verifyTokenRequest = async () =>
   axios.get(`${API_URL}/auth/verify`);
+
+export const passwordRequest = async () =>
+  axios.get(`${API_URL}/auth/olvide-password`);

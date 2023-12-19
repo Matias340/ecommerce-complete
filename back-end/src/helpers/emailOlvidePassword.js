@@ -20,7 +20,7 @@ const emailOlvidePassword = async (datos) => {
     subject: "Reestablece tu contraseña",
     text: "Reestablece tu contraseña",
     html: `<p>Hola: ${username}, Reestable tu contraseña.</p>
-     <p>Genera tu nueva contraseña con este enlace</p><a href="${process.env.FRONTEND_URL}/reset-password/${token}">Reestablece Contraseña</a>
+     <p>Genera tu nueva contraseña con este enlace</p><a href="${process.env.FRONTEND_URL}/olvide-password/${token}">Reestablece Contraseña</a>
 
      <p>Si tu no pediste reestablecer tu contraseña, puedes ignorar este mensaje</p>
      `,
