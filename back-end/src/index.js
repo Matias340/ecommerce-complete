@@ -7,7 +7,7 @@ import bcrypt from "bcryptjs";
 
 connectDB();
 
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 
 app.listen(PORT, () => {
   console.log(`server on port ${PORT}`);

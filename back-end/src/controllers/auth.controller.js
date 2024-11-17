@@ -19,8 +19,11 @@ export const registro = async (req, res) => {
   }
 
   try {
-    // Guardar un Nuevo Usuario
-    const usuario = new User(req.body);
+    // Agregar valor por defecto de confirmado
+    const usuario = new User({
+      ...req.body,
+      confirmado: false,
+    });
     const userGuardado = await usuario.save();
 
     //Enviar el email

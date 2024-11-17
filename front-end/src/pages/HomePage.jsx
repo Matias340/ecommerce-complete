@@ -33,7 +33,7 @@ function HomePage() {
                       alt={product.name}
                     />
                     <div className="p-4">
-                      <h3 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+                      <h3 className="text-xl font-semibold tracking-tight text-gray-900">
                         {product.name}
                       </h3>
                       <div className="flex items-center mt-2.5 mb-5">
@@ -87,7 +87,7 @@ function HomePage() {
                         </span>
                       </div>
                       <div className="flex items-center ">
-                        <span className="text-3xl font-bold text-gray-900 dark:text-white">
+                        <span className="text-3xl font-bold text-gray-900 ">
                           ${product.price}
                         </span>
                       </div>
