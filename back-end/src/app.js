@@ -12,7 +12,7 @@ dotenv.config();
 import Mercado_Pago from "./routes/Mercado_Pago_Router.js";
 
 const corsOptions = {
-  origin: process.env.FRONTEND_URL,
+  origin: 'http://localhost:5173',
   credentials: true,
   optionSuccessStatus: 200,
 };
@@ -24,6 +24,10 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
+
+app.get('/', (req, res) => {
+  res.send('¡Hola, el servidor está funcionando!');
+});
 
 app.get("/products", (req, res) => {
   res.send(products);
