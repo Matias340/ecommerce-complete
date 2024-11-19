@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useAuth } from "../context/authContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Card, Message, Button, Input, Label } from "../components/ui";
 import { useForm } from "react-hook-form";
 import { registerSchema } from "../schemas/auth";
@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 function Register() {
   const { signup, errors: registerErrors, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -21,7 +22,10 @@ function Register() {
   };
 
   useEffect(() => {
-    if (isAuthenticated) alert("usuario creado correctamente, revise su email");
+    if (isAuthenticated) {
+      alert("Usuario creado correctamente, revise su email");
+      navigate("/login", { replace: true }); // Redirige al login
+    }
   }, [isAuthenticated]);
 
   return (

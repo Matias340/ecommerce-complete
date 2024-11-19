@@ -8,6 +8,7 @@ import Carrito from "./pages/Carrito";
 import ConfirmarCuenta from "./pages/ConfirmarCuenta";
 import OlvidePassword from "./pages/Olvide-Password";
 import NuevoPassword from "./pages/NuevoPassword";
+import Buscador from "./components/Buscador";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
       <BrowserRouter>
         <main className="">
           <Navbar />
+          
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />

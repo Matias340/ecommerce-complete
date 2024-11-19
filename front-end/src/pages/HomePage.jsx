@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../store/cartSlice";
+import Buscador from "../components/Buscador";
 import { useGetAllProductsQuery } from "../store/productsAPI";
 
 function HomePage() {
@@ -20,7 +21,9 @@ function HomePage() {
       <div>
         {status === "success" ? (
           <>
+          <Buscador />
             <div className="sm:block md:flex lg:flex xl:flex justify-center mt-20">
+              
               {data &&
                 data.slice(0, 3).map((product) => (
                   <div

@@ -37,6 +37,8 @@ export const AuthProvider = ({ children }) => {
       const res = await registerRequest(user);
       if (res.status === 200) {
         setUser(res.data);
+        setIsAuthenticated(true); // Este cambio debe reflejarse en el contexto
+        console.log("Usuario registrado y autenticado");
         //setIsAuthenticated(true);
       }
     } catch (error) {
